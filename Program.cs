@@ -4,42 +4,62 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Program2
+namespace Program3
 {
-    internal class Program
+    public class Vehicle
     {
-        public class Students
+        protected string make;
+        protected string model;
+        protected int year;
+
+        public string Make { get; set; }
+        public string Model { get; set; }
+        public int Year { get; set; }
+
+        public void Accelerate() { }
+        public void Decelerate() { }
+        public void Drive() { }
+        public void Start() { }
+        public void Stop() { }
+        public Vehicle() { }
+
+        public Vehicle(string make, string model) { Console.WriteLine("Overload Method Invoked"); }
+    }
+
+    public class Car : Vehicle { }
+
+    public class Sportscar : Car { }
+
+    public class Van : Vehicle { }
+
+    public class Minivan : Van
+    {
+        protected int cargo_Net;
+        protected bool dual_Sliding;
+
+        public bool HasCargoNet() { return true; }
+        public bool HasDualSlidingDoors() { return dual_Sliding; }
+
+        public Minivan() { }
+
+        public Minivan(int cargo_Net, bool dual_Sliding) { }
+
+        public void SetCargoNet(int cargo_Net)
         {
-            private string course;
-            private int feepaid;
-            private string name;
-            private int rollno;
-            private string servicetax;
-
-            public string Course { get { return course; } set { course = value; } }
-            public int Feepaid { get { return feepaid; } set { feepaid = value; } }
-            public string Name { get { return name; } set { name = value; } }
-            public int Rollno { get { return rollno; } set { rollno = value; } }
-            public string Servicetax { get { return servicetax; } set { servicetax = value; } }
-
-            public int DueAmount { get; set; }
-            public int ServiceTax { get; set; }
-            public int TotalFee { get; set; }
-
-            public void Payment() { Console.WriteLine("Payment method invoked"); }
-            public void Print() { Console.WriteLine("Print Method Invoked"); }
-            public Students(int Rollno, string Name, string Course)
-            {
-                Console.WriteLine("Student Constructor Invoked");
-                this.Rollno = Rollno;
-                this.Name = Name;
-                this.Course = Course;
-            }
-
+            this.cargo_Net = cargo_Net;
         }
 
+        public void SetDualSliding(bool dual_Sliding)
+        {
+            this.dual_Sliding = dual_Sliding;
+        }
+    }
 
-        static void Main(string[] args)
+    public class ExcursionVan : Van { }
+
+    public class TestVehicles
+    {
+        private static void Main(string[] args)
         {
 
         }
