@@ -4,44 +4,78 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Program2
+namespace program1
 {
     internal class Program
     {
-        public class Students
+        static void Main(string[] args)
         {
-            private string course;
-            private int feepaid;
-            private string name;
-            private int rollno;
-            private string servicetax;
-
-            public string Course { get { return course; } set { course = value; } }
-            public int Feepaid { get { return feepaid; } set { feepaid = value; } }
-            public string Name { get { return name; } set { name = value; } }
-            public int Rollno { get { return rollno; } set { rollno = value; } }
-            public string Servicetax { get { return servicetax; } set { servicetax = value; } }
-
-            public int DueAmount { get; set; }
-            public int ServiceTax { get; set; }
-            public int TotalFee { get; set; }
-
-            public void Payment() { Console.WriteLine("Payment method invoked"); }
-            public void Print() { Console.WriteLine("Print Method Invoked"); }
-            public Students(int Rollno, string Name, string Course)
+            Console.WriteLine("Enter you Names");
+            int total = 3;
+            Person[] persons = new Person[total];
+            for (int i = 0; i < total; i++)
             {
-                Console.WriteLine("Student Constructor Invoked");
-                this.Rollno = Rollno;
-                this.Name = Name;
-                this.Course = Course;
+                if (i == 0)
+                {
+                    persons[i] = new Teacher(Console.ReadLine());
+                }
+                else
+                {
+                    persons[i] = new Student(Console.ReadLine());
+                }
+
+            }
+            for (int i = 0; i < total; i++)
+            {
+                if (i == 0)
+                {
+                    ((Teacher)persons[i]).Explain();
+                }
+                else
+                {
+                    ((Student)persons[i]).Study();
+                }
+            }
+        }
+        public class Person
+        {
+            protected string Name { get; set; }
+            public Person(string name)
+            { Name = name; }
+            public override string ToString()
+            {
+                return "Hello! My name is" + Name;
             }
 
         }
-
-
-        static void Main(string[] args)
+        public class Teacher : Person
         {
+            public Teacher(string name) : base(name)
+            {
+                Name = name;
+            }
 
+            public void Explain()
+            {
+                Console.WriteLine("Explain");
+            }
         }
+
+
+        public class Student : Person
+        {
+            public Student(string name) : base(name)
+            {
+                Name = name;
+            }
+
+            public void Study()
+            {
+                Console.WriteLine("Study");
+            }
+        }
+
+
+
     }
 }
